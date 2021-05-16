@@ -1,0 +1,18 @@
+.root {
+  @apply rounded-md bg-yellow-50 border-yellow-400 p-4
+}
+
+.icon {
+  @apply h-5 w-5 text-yellow-400
+}
+
+.textWarning {
+  @apply text-sm text-yellow-700
+}
+.linkWarning {
+  @apply font-medium underline text-yellow-700 hover:text-yellow-600
+}
+
+.buttonWarning {
+  @apply inline-flex bg-yellow-50 rounded-md ml-4 p-1.5 text-yellow-500 hover:bg-yellow-100 focus:outline-none
+}
