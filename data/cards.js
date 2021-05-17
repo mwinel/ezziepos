@@ -2,7 +2,7 @@ import { ShoppingCartIcon, RefreshIcon, CheckCircleIcon } from "@heroicons/react
 
 export const cards = [
   { name: "Total Orders", href: "#", icon: ShoppingCartIcon, amount: "$30,659.45" },
-  { name: "Pending Orders", href: "#", icon: RefreshIcon, amount: "$-20,259.68" },
+  { name: "Pending Orders", href: "#", icon: RefreshIcon, amount: "$-2,259.68" },
   {
     name: "Processed Orders",
     href: "#",
