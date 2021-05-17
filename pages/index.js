@@ -103,7 +103,7 @@ const Index = () => {
           <h2 className="text-lg leading-6 font-medium text-gray-900">
             Overview
           </h2>
-          <div className="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {/* Card */}
             {cards.map((card) => (
               <OverviewCard
@@ -177,6 +177,30 @@ const Index = () => {
         </h2>
         {/* Activity list */}
         {/* <ActivityTable transactions={transactions} /> */}
+        {/* Action Panel */}
+        <div className="mt-6">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="bg-white shadow sm:rounded-lg">
+              <div className="px-4 py-5 sm:p-6">
+                <h3 className="text-lg leading-6 font-medium text-gray-900">
+                  Your recent activities will show here
+                </h3>
+                <div className="mt-2 max-w-xl text-sm text-gray-500">
+                  <p>
+                    This is where you’ll view recent orders, collected payments,
+                    and recently added products.
+                  </p>
+                </div>
+                <div className="mt-5">
+                  <BaseButton
+                    title="Create your first order"
+                    variant="secondary"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </DashboardLayout>
   );
