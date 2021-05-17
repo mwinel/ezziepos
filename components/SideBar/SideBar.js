@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { navigation, secondaryNavigation } from "../../common/navigation";
 import classNames from "../../common/classnames";
 import { Logo } from "../../components";
-import styles from "./Sidebar.module.css";
+import styles from "./SideBar.module.css";
 
 const SideBar = () => {
   const router = useRouter();
