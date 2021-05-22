@@ -1,0 +1,31 @@
+.root {
+  @apply hidden lg:flex lg:flex-shrink-0;
+}
+
+.container {
+  @apply flex flex-col w-64;
+}
+
+.sidebar {
+  @apply flex flex-col flex-grow bg-cyan-700 pt-5 pb-4 overflow-y-auto;
+}
+
+.nav {
+  @apply mt-5 flex-1 flex flex-col divide-y divide-cyan-800 overflow-y-auto;
+}
+
+.item {
+  @apply group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md;
+}
+
+.item:hover {
+  @apply bg-cyan-600;
+}
+
+.item:focus {
+  @apply bg-cyan-800;
+}
+
+.icon {
+  @apply mr-4 h-6 w-6;
+}

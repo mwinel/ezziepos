@@ -1,11 +1,25 @@
 import { useRouter } from "next/router";
-import { navigation, secondaryNavigation } from "../../common/navigation";
-import classNames from "../../common/classnames";
-import { Logo } from "../../components";
+import {
+  ClockIcon,
+  CogIcon,
+  DocumentReportIcon,
+  HomeIcon,
+  QuestionMarkCircleIcon,
+  ShieldCheckIcon,
+  UserGroupIcon,
+  InboxInIcon,
+  TagIcon,
+} from "@heroicons/react/outline";
+import { Logo, NavLink } from "../../components";
 import styles from "./SideBar.module.css";
+
+import en from "../../locales/en";
+import fr from "../../locales/fr";
 
 const SideBar = () => {
   const router = useRouter();
+  const { locale } = router;
+  const t = locale === "en" ? en : fr;
 
   return (
     // Static sidebar for desktop.
@@ -16,40 +30,50 @@ const SideBar = () => {
           <Logo />
           <nav className={styles.nav} aria-label="Sidebar">
             <div className="px-2 space-y-1">
-              {navigation.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className={classNames(
-                    styles.item,
-                    item.href == router.pathname
-                      ? "text-white bg-cyan-800"
-                      : "text-cyan-100 bg-none"
-                  )}
-                  aria-current="page"
-                >
-                  <item.icon className={styles.icon} aria-hidden="true" />
-                  {item.name}
-                </a>
-              ))}
+              <NavLink name={t.NavLinkHome} icon={<HomeIcon />} href="/" />
+              <NavLink
+                name={t.NavLinkOrders}
+                icon={<InboxInIcon />}
+                href="/orders"
+              />
+              <NavLink
+                name={t.NavLinkProducts}
+                icon={<TagIcon />}
+                href="/products"
+              />
+              <NavLink
+                name={t.NavLinkHistory}
+                icon={<ClockIcon />}
+                href="/history"
+              />
+              <NavLink
+                name={t.NavLinkTeam}
+                icon={<UserGroupIcon />}
+                href="/team"
+              />
+              <NavLink
+                name={t.NavLinkReports}
+                icon={<DocumentReportIcon />}
+                href="/reports"
+              />
             </div>
             <div className="mt-6 pt-6">
               <div className="px-2 space-y-1">
-                {secondaryNavigation.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className={classNames(
-                      styles.item,
-                      item.href == router.pathname
-                        ? "text-white bg-cyan-800"
-                        : "text-cyan-100 bg-none"
-                    )}
-                  >
-                    <item.icon className={styles.icon} aria-hidden="true" />
-                    {item.name}
-                  </a>
-                ))}
+                <NavLink
+                  name={t.NavLinkSettings}
+                  icon={<CogIcon />}
+                  href="/settings"
+                />
+                <NavLink
+                  name={t.NavLinkHelp}
+                  icon={<QuestionMarkCircleIcon />}
+                  href="/help"
+                />
+                <NavLink
+                  name={t.NavLinkPrivacy}
+                  icon={<ShieldCheckIcon />}
+                  href="/privacy"
+                />
               </div>
             </div>
           </nav>

@@ -8,3 +8,5 @@ export { default as ActivityTable } from "./ActivityTable";
 export { default as ProductsTable } from "./ProductsTable";
 export { default as BaseButton } from "./BaseButton";
 export { default as Alert } from "./Alert";
+export { default as OrdersTable } from "./OrdersTable";
+export { default as NavLink } from "./NavLink";

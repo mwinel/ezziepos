@@ -1,9 +1,16 @@
 import { Fragment } from "react";
+import { useRouter } from "next/router";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 import classNames from "../../common/classnames";
 
+import en from "../../locales/en";
+import fr from "../../locales/fr";
+
 const ProfileDropdown = () => {
+  const router = useRouter();
+  const { locale } = router;
+  const t = locale === "en" ? en : fr;
 
   return (
     <Menu as="div" className="ml-3 relative">
@@ -49,7 +56,7 @@ const ProfileDropdown = () => {
                       "block px-4 py-2 text-sm text-gray-700"
                     )}
                   >
-                    Your Profile
+                    {t.ProfileLink}
                   </a>
                 )}
               </Menu.Item>
@@ -62,7 +69,7 @@ const ProfileDropdown = () => {
                       "block px-4 py-2 text-sm text-gray-700"
                     )}
                   >
-                    Settings
+                    {t.SettingsLink}
                   </a>
                 )}
               </Menu.Item>
@@ -75,7 +82,7 @@ const ProfileDropdown = () => {
                       "block px-4 py-2 text-sm text-gray-700"
                     )}
                   >
-                    Logout
+                    {t.LogoutLink}
                   </a>
                 )}
               </Menu.Item>

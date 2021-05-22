@@ -1,5 +1,6 @@
 import { DashboardLayout } from "../layout";
-import { Header, BaseButton } from "../components";
+import { Header, BaseButton, OrdersTable } from "../components";
+import { orders } from "../data/orders";
 
 const Orders = () => {
   return (
@@ -19,6 +20,7 @@ const Orders = () => {
           </div>
         </div>
       </Header>
+      <OrdersTable orders={orders} />
     </DashboardLayout>
   );
 };

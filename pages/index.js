@@ -177,6 +177,7 @@ const Index = () => {
         </h2>
         {/* Activity list */}
         {/* <ActivityTable transactions={transactions} /> */}
+
         {/* Action Panel */}
         <div className="mt-6">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

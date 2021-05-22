@@ -1,16 +1,38 @@
 import { Fragment, useState } from "react";
 import { useRouter } from "next/router";
 import { Dialog, Transition } from "@headlessui/react";
-import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
-import { SearchIcon } from "@heroicons/react/solid";
-import { ProfileDropdown, Logo } from "../../components";
-import { navigation, secondaryNavigation } from "../../common/navigation";
-import classNames from "../../common/classnames";
+import {
+  BellIcon,
+  MenuIcon,
+  XIcon,
+  SearchIcon,
+  ClockIcon,
+  CogIcon,
+  DocumentReportIcon,
+  HomeIcon,
+  QuestionMarkCircleIcon,
+  ShieldCheckIcon,
+  UserGroupIcon,
+  InboxInIcon,
+  TagIcon,
+} from "@heroicons/react/outline";
+import { ProfileDropdown, Logo, NavLink } from "../../components";
 import styles from "./TopHeader.module.css";
+
+import en from "../../locales/en";
+import fr from "../../locales/fr";
 
 const TopHeader = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
   const router = useRouter();
+  const { locale } = router;
+  const t = locale === "en" ? en : fr;
+
+  const handleLanguageChange = (e) => {
+    const locale = e.target.value;
+    router.push(router.pathname, router.asPath, { locale });
+  };
 
   return (
     <>
@@ -65,45 +87,50 @@ const TopHeader = () => {
               <Logo />
               <nav className={styles.nav} aria-label="Sidebar">
                 <div className="px-2 space-y-1">
-                  {navigation.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className={classNames(
-                        styles.item,
-                        item.href == router.pathname
-                          ? "text-white bg-cyan-800"
-                          : "text-cyan-100 bg-none"
-                      )}
-                    >
-                      <item.icon
-                        className={styles.icon}
-                        aria-hidden="true"
-                      />
-                      {item.name}
-                    </a>
-                  ))}
+                  <NavLink name={t.NavLinkHome} icon={<HomeIcon />} href="/" />
+                  <NavLink
+                    name={t.NavLinkOrders}
+                    icon={<InboxInIcon />}
+                    href="/orders"
+                  />
+                  <NavLink
+                    name={t.NavLinkProducts}
+                    icon={<TagIcon />}
+                    href="/products"
+                  />
+                  <NavLink
+                    name={t.NavLinkHistory}
+                    icon={<ClockIcon />}
+                    href="/history"
+                  />
+                  <NavLink
+                    name={t.NavLinkTeam}
+                    icon={<UserGroupIcon />}
+                    href="/team"
+                  />
+                  <NavLink
+                    name={t.NavLinkReports}
+                    icon={<DocumentReportIcon />}
+                    href="/reports"
+                  />
                 </div>
                 <div className="mt-6 pt-6">
                   <div className="px-2 space-y-1">
-                    {secondaryNavigation.map((item) => (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                        className={classNames(
-                          styles.item,
-                          item.href == router.pathname
-                            ? "text-white bg-cyan-800"
-                            : "text-cyan-100 bg-none"
-                        )}
-                      >
-                        <item.icon
-                          className={styles.icon}
-                          aria-hidden="true"
-                        />
-                        {item.name}
-                      </a>
-                    ))}
+                    <NavLink
+                      name={t.NavLinkSettings}
+                      icon={<CogIcon />}
+                      href="/settings"
+                    />
+                    <NavLink
+                      name={t.NavLinkHelp}
+                      icon={<QuestionMarkCircleIcon />}
+                      href="/help"
+                    />
+                    <NavLink
+                      name={t.NavLinkPrivacy}
+                      icon={<ShieldCheckIcon />}
+                      href="/privacy"
+                    />
                   </div>
                 </div>
               </nav>
@@ -135,13 +162,23 @@ const TopHeader = () => {
                   id="search_field"
                   name="search_field"
                   className={styles.input}
-                  placeholder="Search here..."
+                  placeholder={t.SearchinputPlaceholder}
                   type="search"
                 />
               </div>
             </form>
           </div>
           <div className={styles.bellIconContainer}>
+            <select
+              id="locale"
+              name="locale"
+              className="mr-3 pl-3 pr-10 py-2 text-gray-700 text-base font-medium bg-white rounded-full border-none text-sm focus:outline-none focus:border-gray-50 active:outline-none active:border-none lg:rounded-md lg:hover:bg-gray-50 sm:text-sm"
+              defaultValue={locale}
+              onChange={handleLanguageChange}
+            >
+              <option value="en">EN</option>
+              <option value="fr">FR</option>
+            </select>
             <button className={styles.bellIconButton}>
               <span className="sr-only">View notifications</span>
               <BellIcon className="h-6 w-6" aria-hidden="true" />
