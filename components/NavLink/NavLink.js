@@ -7,7 +7,6 @@ const NavLink = ({ name, href, icon }) => {
   const router = useRouter();
   const { locale } = router;
 
-  
   return (
     <Link href={href} locale={locale}>
       <a
