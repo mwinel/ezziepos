@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
 import classNames from "../../common/classnames";
-import styles from "./NavLink.module.css";
+import styles from "./Navlink.module.css";
 
 const NavLink = ({ name, href, icon }) => {
   const router = useRouter();
