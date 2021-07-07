@@ -1,13 +1,11 @@
-import { FC, ReactNode } from "react";
+import { HTMLAttributes } from "react";
 import classNames from "../../common/classnames";
 
-type Variant = "primary" | "secondary" | "danger";
-
-interface ActivityDotProps {
-  variant: Variant;
+interface ActivityDotProps extends HTMLAttributes<HTMLSpanElement> {
+  variant: "primary" | "secondary" | "danger";
 }
 
-const ActivityDot: FC<ActivityDotProps> = ({ variant }) => {
+const ActivityDot: FC<ActivityDotProps> = ({ variant, ...props }) => {
   const rootClassName = classNames(
     "absolute block h-2.5 w-2.5 rounded-full ring-2 ring-white",
     variant === "primary" ? "bg-green-400" : "",
@@ -15,7 +13,7 @@ const ActivityDot: FC<ActivityDotProps> = ({ variant }) => {
     variant === "danger" ? "bg-red-400" : ""
   );
 
-  return <span className={rootClassName} variant={variant} />;
+  return <span className={rootClassName} {...props} />;
 };
 
 export default ActivityDot;
