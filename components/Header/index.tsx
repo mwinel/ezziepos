@@ -16,6 +16,7 @@ import {
   UserGroupIcon,
   InboxInIcon,
   TagIcon,
+  LogoutIcon
 } from "@heroicons/react/outline";
 import { NavLink, Logo, DropdownLink } from "../../components";
 import classNames from "../../common/classnames";
@@ -236,11 +237,11 @@ const Header: FC<HeaderProps> = ({ children }) => {
                   icon={<ShieldCheckIcon />}
                   href="/privacy"
                 />
-              </div>
-            </div>
-            <div className="border-t border-gray-200 pt-4">
-              <div className="max-w-3xl mx-auto px-4 text-sm flex items-center sm:px-6">
-                <Link href="/auth/signout">{t.LogoutLink}</Link>
+                <NavLink
+                  name={t.LogoutLink}
+                  icon={<LogoutIcon />}
+                  href="/auth/signin"
+                />
               </div>
             </div>
           </Popover.Panel>
