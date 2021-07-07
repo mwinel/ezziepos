@@ -1,23 +1,20 @@
-import { FC, ReactNode } from "react";
+import { ReactNode, HTMLAttributes } from "react";
 import classNames from "../../common/classnames";
 
-type Variant = "primary" | "secondary" | "danger";
-
-interface ButtonProps {
+interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
+  variant: "primary" | "secondary" | "danger";
   children: ReactNode | any;
-  variant: Variant;
-  disabled?: boolean;
   onClick?: any;
-  className?: any;
+  disabled: boolean;
 }
 
-const Button: FC<ButtonProps> = ({
+const Button = ({
   children,
   variant,
-  disabled,
   onClick,
-  className,
-}) => {
+  disabled,
+  ...props
+}: ButtonProps) => {
   const rootClassName = classNames(
     "w-full block text-center text-sm px-4 py-2 font-medium rounded-md",
     variant == "primary"
@@ -29,16 +26,14 @@ const Button: FC<ButtonProps> = ({
     variant == "danger"
       ? "shadow-sm text-white bg-red-600 hover:bg-red-700"
       : "",
-    disabled ? "cursor-not-allowed" : "",
-    className
+    disabled ? "cursor-not-allowed" : ""
   );
-
   return (
     <button
+      type="button"
       className={rootClassName}
       onClick={onClick}
-      variant={variant}
-      disabled={disabled}
+      {...props}
     >
       {children}
     </button>
