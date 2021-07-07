@@ -6,7 +6,6 @@ import {
   Main,
   Aside,
   RecentActivities,
-  Button,
 } from "../components";
 
 const recentActivities = [
@@ -46,7 +45,7 @@ const Home = () => {
       <Container>
         <SideBar />
         {/* Main */}
-        <Main></Main>
+        <Main>Home Page</Main>
         {/* Aside */}
         <Aside>
           {/* Recent Activities */}
