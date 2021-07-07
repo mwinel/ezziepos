@@ -5,7 +5,7 @@ interface ActivityDotProps extends HTMLAttributes<HTMLSpanElement> {
   variant: "primary" | "secondary" | "danger";
 }
 
-const ActivityDot: FC<ActivityDotProps> = ({ variant, ...props }) => {
+const ActivityDot = ({ variant, ...props }: ActivityDotProps) => {
   const rootClassName = classNames(
     "absolute block h-2.5 w-2.5 rounded-full ring-2 ring-white",
     variant === "primary" ? "bg-green-400" : "",
