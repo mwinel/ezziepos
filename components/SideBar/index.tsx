@@ -30,7 +30,7 @@ const SideBar: FC<SideBarProps> = () => {
         className="sticky top-4 divide-y divide-gray-300"
       >
         <div className="pb-8 space-y-1">
-          <NavLink name={t.NavLinkHome} icon={<HomeIcon />} href="/home" />
+          <NavLink name={t.NavLinkHome} icon={<HomeIcon />} href="/" />
           <NavLink
             name={t.NavLinkOrders}
             icon={<InboxInIcon />}
