@@ -61,9 +61,7 @@ const Header: FC<HeaderProps> = ({ children }) => {
             <div className="relative flex justify-between xl:grid xl:grid-cols-12 lg:gap-8">
               <div className="flex md:absolute md:left-0 md:inset-y-0 lg:static xl:col-span-2">
                 <div className="flex-shrink-0 flex items-center">
-                  <Link href="/">
-                    <Logo />
-                  </Link>
+                  <Logo href="/" />
                 </div>
               </div>
               <div className="min-w-0 flex-1 md:px-8 lg:px-0 xl:col-span-6">
@@ -170,7 +168,7 @@ const Header: FC<HeaderProps> = ({ children }) => {
 
           <Popover.Panel as="nav" className="lg:hidden" aria-label="Global">
             <div className="max-w-3xl mx-auto px-2 pt-2 pb-3 space-y-1 sm:px-4">
-              <NavLink name={t.NavLinkHome} icon={<HomeIcon />} href="/home" />
+              <NavLink name={t.NavLinkHome} icon={<HomeIcon />} href="/" />
               <NavLink
                 name={t.NavLinkOrders}
                 icon={<InboxInIcon />}
