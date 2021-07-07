@@ -1,7 +1,0 @@
-.root {
-  @apply bg-none;
-}
-
-.container {
-  @apply px-4 sm:px-6 lg:max-w-6xl lg:mx-auto lg:px-8;
-}

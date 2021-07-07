@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 import { useRouter } from "next/router";
 import { MailIcon, EyeIcon, EyeOffIcon } from "@heroicons/react/outline";
-import { BaseButton, Alert } from "../../components";
+import { Button, Alert } from "../../components";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -25,7 +25,7 @@ const SignUp = () => {
   );
 
   const onSignUp = (event) => {
-    // event.preventDefault();
+    event.preventDefault();
     if (password === confirmPassword) {
       setError("");
       setShowErrorAlert(false);
@@ -54,7 +54,7 @@ const SignUp = () => {
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+        <div className="bg-white py-8 px-4 shadow sm:rounded-md sm:px-10">
           <form className="space-y-6">
             <div>
               <label
@@ -178,13 +178,7 @@ const SignUp = () => {
             </div>
 
             <div>
-              <BaseButton
-                variant="primary"
-                title="Sign Up"
-                className="w-full"
-                type="submit"
-                onClick={onSignUp}
-              />
+              <Button variant="secondary" onClick={onSignUp}>Sign Up</Button>
             </div>
           </form>
         </div>

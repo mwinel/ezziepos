@@ -1,7 +1,0 @@
-.root {
-  @apply flex items-center flex-shrink-0 px-4;
-}
-
-.logo {
-  @apply h-8 w-auto;
-}
