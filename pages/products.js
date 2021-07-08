@@ -40,7 +40,7 @@ const Products = () => {
       <Container>
         <SideBar />
         {/* Page content */}
-        <main className="lg:col-span-9 xl:col-span-10">
+        <Main>
           <div className="px-4 sm:px-0">
             {/* Products Table */}
             <div className="flex flex-col">
@@ -141,7 +141,7 @@ const Products = () => {
               </div>
             </div>
           </div>
-        </main>
+        </Main>
       </Container>
     </DashboardLayout>
   );

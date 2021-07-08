@@ -5,7 +5,7 @@ interface MainProps {
 }
 
 const Main: FC<MainProps> = ({ children }) => {
-  return <main className="lg:col-span-9 xl:col-span-6">{children}</main>;
+  return <main className="lg:col-span-9 xl:col-span-7">{children}</main>;
 };
 
 export default Main;
