@@ -16,7 +16,7 @@ const Tabs: FC<TabsProps> = ({ children, tabs, id }) => {
         </label>
         <select
           id={id}
-          className="block w-full rounded-md border-gray-300 text-base font-medium text-gray-900 shadow-sm focus:border-rose-500 focus:ring-rose-500"
+          className="block w-full rounded-md border-gray-300 text-base font-medium text-gray-800 shadow-sm focus:border-cyan-500 focus:ring-cyan-500"
           defaultValue={tabs.find((tab) => tab.current).name}
         >
           {tabs.map((tab) => (
