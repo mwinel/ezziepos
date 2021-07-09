@@ -163,7 +163,7 @@ const Products = () => {
         {/* Page content */}
         <Main>
           {/* Section Heading */}
-          <div className="pb-5 mx-4 sm:flex sm:items-center sm:justify-between lg:mx-0">
+          <div className="pb-5 sm:flex sm:items-center sm:justify-between">
             <h3 className="text-lg leading-6 font-medium text-gray-800">
               Products
             </h3>
