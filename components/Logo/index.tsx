@@ -4,7 +4,7 @@ interface LogoProps {
   href?: string;
 }
 
-const Logo = ({ href }) => {
+const Logo = ({ href }: LogoProps) => {
   const router = useRouter();
 
   const handleClick = (e) => {
