@@ -1,13 +1,17 @@
-const colors = require('tailwindcss/colors')
+const colors = require("tailwindcss/colors");
 
 module.exports = {
-  purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'], // remove unused styles in production
+  purge: [
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+    "./layouts/**/*.{js,ts,jsx,tsx}",
+  ], // remove unused styles in production
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
       colors: {
         cyan: colors.cyan,
-      }
+      },
     },
   },
   variants: {
@@ -16,7 +20,5 @@ module.exports = {
       // textColor: ['active']
     },
   },
-  plugins: [
-    require('@tailwindcss/forms')
-  ],
-}
+  plugins: [require("@tailwindcss/forms")],
+};
