@@ -5,7 +5,14 @@ import {
   Main,
   Aside,
   RecentActivities,
+  Tabs,
 } from "../components";
+
+const tabs = [
+  { name: "All", href: "#", current: true },
+  { name: "Draft", href: "#", current: false },
+  { name: "Archived", href: "#", current: false },
+];
 
 const recentActivities = [
   {
@@ -64,6 +71,7 @@ const Products = () => {
         <SideBar />
         {/* Page content */}
         <Main>
+          <Tabs tabs={tabs} id="products-tabs" />
           {/* Products Table */}
           <div className="flex flex-col">
             <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">

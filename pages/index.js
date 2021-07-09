@@ -1,4 +1,4 @@
-import { Fragment } from 'react'
+import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import {
   ChatAltIcon,
@@ -18,7 +18,14 @@ import {
   Main,
   Aside,
   RecentActivities,
+  Tabs,
 } from "../components";
+
+const tabs = [
+  { name: "Recent", href: "#", current: true },
+  { name: "Most Liked", href: "#", current: false },
+  { name: "Most Answers", href: "#", current: false },
+];
 
 const questions = [
   {
@@ -80,6 +87,7 @@ const Home = () => {
 
         {/* Main */}
         <Main>
+          <Tabs tabs={tabs} id="demo-tabs" />
           <div className="mt-4">
             <h1 className="sr-only">Recent questions</h1>
             <ul className="space-y-4">

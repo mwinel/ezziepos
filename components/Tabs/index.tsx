@@ -2,12 +2,11 @@ import { FC } from "react";
 import classNames from '../../common/classnames'
 
 interface TabsProps {
-  children?: any;
   tabs: any;
   id: string;
 }
 
-const Tabs: FC<TabsProps> = ({ children, tabs, id }) => {
+const Tabs: FC<TabsProps> = ({ tabs, id }) => {
   return (
     <div className="px-4 sm:px-0">
       <div className="sm:hidden">
