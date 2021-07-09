@@ -54,11 +54,101 @@ const products = [
   },
   {
     id: 3,
-    name: "Samsung Galaxy   A10",
+    name: "Samsung Galaxy A10",
     type: "Electronics",
     department: "Electronics",
     inventory: 11,
     price: 220,
+    discount: 0,
+    status: "active",
+  },
+  {
+    id: 4,
+    name: "Samsung Galaxy A11",
+    type: "Electronics",
+    department: "Electronics",
+    inventory: 11,
+    price: 220,
+    discount: 0,
+    status: "active",
+  },
+  {
+    id: 5,
+    name: "Samsung Galaxy A01",
+    type: "Electronics",
+    department: "Electronics",
+    inventory: 10,
+    price: 120,
+    discount: 0,
+    status: "active",
+  },
+  {
+    id: 6,
+    name: "Nokia ZT20",
+    type: "Electronics",
+    department: "Electronics",
+    inventory: 2,
+    price: 1200,
+    discount: 0,
+    status: "active",
+  },
+  {
+    id: 7,
+    name: "MacBook Pro 13 inches 2018",
+    type: "Computer",
+    department: "Electronics",
+    inventory: 26,
+    price: 1800,
+    discount: 0,
+    status: "active",
+  },
+  {
+    id: 8,
+    name: "MacBook Pro 16 inches 2020",
+    type: "Computer",
+    department: "Electronics",
+    inventory: 16,
+    price: 2800,
+    discount: 0,
+    status: "active",
+  },
+  {
+    id: 9,
+    name: "Acer Pro-Book",
+    type: "Computer",
+    department: "Electronics",
+    inventory: 116,
+    price: 800,
+    discount: 0,
+    status: "active",
+  },
+  {
+    id: 10,
+    name: "Dell e Pro-Book",
+    type: "Computer",
+    department: "Electronics",
+    inventory: 216,
+    price: 800,
+    discount: 0,
+    status: "active",
+  },
+  {
+    id: 11,
+    name: "Samsung Note Book",
+    type: "Computer",
+    department: "Electronics",
+    inventory: 19,
+    price: 900,
+    discount: 0,
+    status: "active",
+  },
+  {
+    id: 12,
+    name: "Lenovo Titan Note Book",
+    type: "Computer",
+    department: "Electronics",
+    inventory: 21,
+    price: 600,
     discount: 0,
     status: "active",
   },
@@ -76,13 +166,13 @@ const Products = () => {
           <div className="mt-4 flex flex-col">
             <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
               <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-md">
                   <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-50">
+                    <thead className="bg-white">
                       <tr>
                         <th
                           scope="col"
-                          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                          className="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider"
                         >
                           {/* Checkbox */}
                           <input
