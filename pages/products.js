@@ -6,6 +6,7 @@ import {
   Aside,
   RecentActivities,
   Tabs,
+  Button,
 } from "../components";
 
 const tabs = [
@@ -161,6 +162,15 @@ const Products = () => {
         <SideBar />
         {/* Page content */}
         <Main>
+          {/* Section Heading */}
+          <div className="pb-5 mx-4 sm:flex sm:items-center sm:justify-between lg:mx-0">
+            <h3 className="text-lg leading-6 font-medium text-gray-800">
+              Products
+            </h3>
+            <div className="mt-3 sm:mt-0 sm:ml-4">
+              <Button variant="secondary">Add Product</Button>
+            </div>
+          </div>
           <Tabs tabs={tabs} id="products-tabs" />
           {/* Products Table */}
           <div className="mt-4 flex flex-col">
