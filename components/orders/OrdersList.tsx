@@ -116,16 +116,11 @@ const OrdersList = ({ orders }: OrdersListProps) => {
                         onChange={() => handleSelectOrder(order.id)}
                       />
                     </TableCell>
-                    <TableCell className="text-sm font-medium text-gray-800">
-                      <Link
-                        href={{
-                          pathname: "/orders/[id]",
-                          query: { id: order.id },
-                        }}
-                        passHref
-                      >
-                        {order.orderNumber}
-                      </Link>
+                    <TableCell
+                      className="text-sm font-medium text-gray-800"
+                      onClick={() => router.push("/orders/" + order.id)}
+                    >
+                      # {order.orderNumber}
                     </TableCell>
                     <TableCell className="text-sm text-gray-800">
                       <div>
