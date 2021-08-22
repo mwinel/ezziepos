@@ -1,12 +1,4 @@
-import { useState } from "react";
-import { useRouter } from "next/router";
-// import { DashboardLayout } from "../layouts";
-import {DashboardLayout, PageHeading, Button, TeamTable } from "../components";
-
-import en from "../locales/en";
-import fr from "../locales/fr";
-
-const team = [
+const testTeamMembers = [
   {
     id: 1,
     firstName: "Jane",
@@ -53,24 +45,4 @@ const team = [
   },
 ];
 
-const Team = () => {
-  const [users] = useState(team);
-
-  const router = useRouter();
-  const { locale } = router;
-  const t = locale === "en" ? en : fr;
-
-  return (
-    <DashboardLayout>
-      <div className="pb-5 flex items-center justify-between">
-        <PageHeading title={t.TeamPageTitle} />
-        <div className="flex mt-3 sm:mt-0 sm:ml-4">
-          <Button variant="secondary">Add Team Member</Button>
-        </div>
-      </div>
-      <TeamTable team={users} />
-    </DashboardLayout>
-  );
-};
-
-export default Team;
+export default testTeamMembers;
