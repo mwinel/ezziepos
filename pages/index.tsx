@@ -9,11 +9,9 @@ import {
   StarIcon,
   ThumbUpIcon,
 } from "@heroicons/react/solid";
-import SideBar from "@components/ui/SideBar";
 import Aside from "@components/ui/Aside";
 import RecentActivities from "@components/activities/RecentActivities";
 import classNames from "@common/classnames";
-
 
 const questions = [
   {
@@ -70,7 +68,6 @@ const trendingPosts = [
 const Home = () => {
   return (
     <>
-      <SideBar />
       {/* Main */}
       <main className="lg:col-span-9 xl:col-span-6">
         {/* <Tabs tabs={tabs} id="demo-tabs" /> */}
@@ -176,25 +173,6 @@ const Home = () => {
                                             aria-hidden="true"
                                           />
                                           <span>Embed</span>
-                                        </a>
-                                      )}
-                                    </Menu.Item>
-                                    <Menu.Item>
-                                      {({ active }) => (
-                                        <a
-                                          href="#"
-                                          className={classNames(
-                                            active
-                                              ? "bg-gray-100 text-gray-900"
-                                              : "text-gray-700",
-                                            "flex px-4 py-2 text-sm"
-                                          )}
-                                        >
-                                          <FlagIcon
-                                            className="mr-3 h-5 w-5 text-gray-400"
-                                            aria-hidden="true"
-                                          />
-                                          <span>Report content</span>
                                         </a>
                                       )}
                                     </Menu.Item>
