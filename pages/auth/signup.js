@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 import { MailIcon, EyeIcon, EyeOffIcon } from "@heroicons/react/outline";
 import { Button, Alert } from "../../components";
 
@@ -44,12 +45,11 @@ const SignUp = () => {
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
           Already have an account?{" "}
-          <a
-            href="/auth/signin"
-            className="font-medium text-cyan-600 hover:text-cyan-500"
-          >
-            Login.
-          </a>
+          <Link href="/auth/signin">
+            <a className="font-medium text-cyan-600 hover:text-cyan-500">
+              Login.
+            </a>
+          </Link>
         </p>
       </div>
 
@@ -58,7 +58,7 @@ const SignUp = () => {
           <form className="space-y-6">
             <div>
               <label
-                htmlFor="account_number"
+                htmlFor="email"
                 className="block text-sm font-medium text-gray-700"
               >
                 Email Address
@@ -84,7 +84,7 @@ const SignUp = () => {
 
             <div>
               <label
-                htmlFor="account_number"
+                htmlFor="password"
                 className="block text-sm font-medium text-gray-700"
               >
                 Password
@@ -119,15 +119,15 @@ const SignUp = () => {
 
             <div>
               <label
-                htmlFor="account_number"
+                htmlFor="confirm_password"
                 className="block text-sm font-medium text-gray-700"
               >
                 Confirm Password
               </label>
               <div className="mt-1 relative rounded-md shadow-sm">
                 <input
-                  id="password"
-                  name="password"
+                  id="confirm_password"
+                  name="confirm_password"
                   type={showConfirmPassword ? "text" : "password"}
                   autoComplete="current-password"
                   required
@@ -167,18 +167,19 @@ const SignUp = () => {
                   className="ml-2 block text-sm text-gray-900"
                 >
                   I agree to{" "}
-                  <a
-                    href="/auth/signin"
-                    className="font-medium text-cyan-600 hover:text-cyan-500"
-                  >
-                    terms.
-                  </a>
+                  <Link href="/auth/signin">
+                    <a className="font-medium text-cyan-600 hover:text-cyan-500">
+                      terms.
+                    </a>
+                  </Link>
                 </label>
               </div>
             </div>
 
             <div>
-              <Button variant="secondary" onClick={onSignUp}>Sign Up</Button>
+              <Button variant="secondary" onClick={onSignUp} className="w-full">
+                Sign Up
+              </Button>
             </div>
           </form>
         </div>

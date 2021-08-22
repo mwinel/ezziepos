@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 import { MailIcon, EyeIcon, EyeOffIcon } from "@heroicons/react/outline";
 import { Button, Alert } from "../../components";
 
@@ -28,12 +29,11 @@ const SignIn = () => {
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
           or{" "}
-          <a
-            href="/auth/signup"
-            className="font-medium text-cyan-600 hover:text-cyan-500"
-          >
-            Start your 14 days free trial.
-          </a>
+          <Link href="/auth/signup">
+            <a className="font-medium text-cyan-600 hover:text-cyan-500">
+              Start your 14 days free trial.
+            </a>
+          </Link>
         </p>
       </div>
 
@@ -42,7 +42,7 @@ const SignIn = () => {
           <form className="space-y-6" action="#" method="POST">
             <div>
               <label
-                htmlFor="account_number"
+                htmlFor="email"
                 className="block text-sm font-medium text-gray-700"
               >
                 Email Address
@@ -68,7 +68,7 @@ const SignIn = () => {
 
             <div>
               <label
-                htmlFor="account_number"
+                htmlFor="password"
                 className="block text-sm font-medium text-gray-700"
               >
                 Password
@@ -118,17 +118,16 @@ const SignIn = () => {
               </div>
 
               <div className="text-sm">
-                <a
-                  href="#"
-                  className="font-medium text-cyan-600 hover:text-cyan-500"
-                >
-                  Forgot your password?
-                </a>
+                <Link href="#">
+                  <a className="font-medium text-cyan-600 hover:text-cyan-500">
+                    Forgot your password?
+                  </a>
+                </Link>
               </div>
             </div>
 
             <div>
-              <Button variant="secondary" onClick={onSignIn}>
+              <Button variant="secondary" onClick={onSignIn} className="w-full">
                 Login
               </Button>
             </div>
