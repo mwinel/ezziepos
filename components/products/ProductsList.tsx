@@ -108,16 +108,11 @@ const ProductsList = ({ products }: ProductsListProps) => {
                         onChange={() => handleSelectProduct(product.id)}
                       />
                     </TableCell>
-                    <TableCell className="text-sm font-medium text-gray-800">
-                      <Link
-                        href={{
-                          pathname: "/products/[id]",
-                          query: { id: product.id },
-                        }}
-                        passHref
-                      >
-                        {product.name}
-                      </Link>
+                    <TableCell
+                      className="text-sm font-medium text-gray-800"
+                      onClick={() => router.push("/products/" + product.id)}
+                    >
+                      {product.name}
                     </TableCell>
                     <TableCell className="text-sm text-gray-800">
                       {product.inventory} in stock
