@@ -14,18 +14,5 @@ export { default as Badge } from "./ui/Badge";
 export { default as PaginationNav } from "./ui/PaginationNav";
 export { default as TableTabs } from "./ui/TableTabs";
 
-// layouts
-export { default as HomePageLayout } from "./layouts/HomePageLayout";
-export { default as DashboardLayout } from "./layouts/DashboardLayout";
-
-// products
-// export { default as ProductsTable } from "./products/ProductsTable";
-
-// orders
-export { default as OrdersTable } from "./orders/OrdersTable";
-
-// team
-export { default as TeamTable } from "./team/TeamTable";
-
 // activities
 export { default as RecentActivities } from "./activities/RecentActivities";
