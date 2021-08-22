@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import Link from "next/link";
 import Image from "next/image";
 import TableTabs from "@components/ui/TableTabs";
 import Badge from "@components/ui/Badge";
@@ -107,7 +106,10 @@ const TeamList = ({ team }: TeamListProps) => {
                         onChange={() => handleSelectTeamMember(teamMember.id)}
                       />
                     </TableCell>
-                    <TableCell className="text-sm font-medium text-gray-800">
+                    <TableCell
+                      className="text-sm font-medium text-gray-800"
+                      onClick={() => router.push("/team/" + teamMember.id)}
+                    >
                       <div className="flex-shrink-0 h-10 w-10">
                         <Image
                           loader={myLoader}
