@@ -9,16 +9,11 @@ import {
   StarIcon,
   ThumbUpIcon,
 } from "@heroicons/react/solid";
-// import HomePageLayout from "@components/layouts/HomePageLayout";
 import SideBar from "@components/ui/SideBar";
 import Aside from "@components/ui/Aside";
 import RecentActivities from "@components/activities/RecentActivities";
+import classNames from "@common/classnames";
 
-// const tabs = [
-//   { name: "Recent", href: "#", current: true },
-//   { name: "Most Liked", href: "#", current: false },
-//   { name: "Most Answers", href: "#", current: false },
-// ];
 
 const questions = [
   {
