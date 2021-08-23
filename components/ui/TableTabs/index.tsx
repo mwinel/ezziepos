@@ -3,9 +3,11 @@ import classNames from "../../../common/classnames";
 interface TableTabsProps {
   tabs: any;
   id: string;
+  onClick: any,
+  ariaPressed: any
 }
 
-const TableTabs = ({ tabs, id }: TableTabsProps) => {
+const TableTabs = ({ tabs, id, onClick, ariaPressed }: TableTabsProps) => {
   return (
     <div className="bg-white">
       <div className="sm:hidden">
@@ -37,6 +39,8 @@ const TableTabs = ({ tabs, id }: TableTabsProps) => {
                   "whitespace-nowrap flex py-5 px-1 border-b-2 font-medium text-sm"
                 )}
                 aria-current={tab.current ? "page" : undefined}
+                aria-pressed={ariaPressed}
+                onClick={onClick}
               >
                 {tab.name}
                 {tab.count ? (

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import Button from "@components/ui/Button";
 import PageHeading from "@components/ui/PageHeading";
+import EmptyState from "@components/ui/EmptyState";
 import ProductsList from "@components/products/ProductsList";
 
 import testProducts from "../data/products";
@@ -18,13 +19,35 @@ const Products = () => {
 
   return (
     <>
-      <div className="pb-5 flex items-center justify-between">
+      <div className="pb-2 flex items-center justify-between">
         <PageHeading title={t.ProductsPageTitle} />
-        <div className="flex mt-3 sm:mt-0 sm:ml-4">
-          <Button variant="secondary">Add Product</Button>
+        <div className="flex mt-3 sm:mt-0 sm:ml-4 items-center">
+          <button
+            type="button"
+            className="inline-flex items-center px-3 py-2 border border-transparent text-sm font-medium rounded text-gray-600 hover:bg-gray-200 focus:outline-none"
+          >
+            Export
+          </button>
+          <button
+            type="button"
+            className="inline-flex items-center px-3 py-2 border border-transparent text-sm font-medium rounded text-gray-600 hover:bg-gray-200 focus:outline-none"
+          >
+            Import
+          </button>
+          <Button variant="secondary" className="ml-2">
+            Add Product
+          </Button>
         </div>
       </div>
-      <ProductsList products={products} />
+      {products.length ? (
+        <ProductsList products={products} />
+      ) : (
+        <EmptyState
+          title="No Products"
+          description="Get started by creating a new product."
+          buttonText="New Product"
+        />
+      )}
     </>
   );
 };
