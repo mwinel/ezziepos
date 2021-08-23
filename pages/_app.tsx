@@ -1,8 +1,9 @@
+import { AppProps, NextWebVitalsMetric } from "next/app";
+
 import "tailwindcss/tailwind.css";
 import "../styles/globals.css";
 import Router from "next/router";
 import NProgress from "nprogress"; //nprogress module
-
 import "nprogress/nprogress.css"; //styles of nprogress
 
 import DashboardLayout from "@components/layouts/DashboardLayout";
@@ -14,12 +15,16 @@ Router.events.on("routeChangeError", () => NProgress.done());
 
 NProgress.configure({ showSpinner: false });
 
-const MyApp = ({ Component, pageProps }) => {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <DashboardLayout>
       <Component {...pageProps} />
     </DashboardLayout>
   );
 };
+
+// export const reportWebVitals = (metric: NextWebVitalsMetric) => {
+//   console.log(metric);
+// };
 
 export default MyApp;
