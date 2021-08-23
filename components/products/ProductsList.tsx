@@ -63,6 +63,22 @@ const ProductsList = ({ products }: ProductsListProps) => {
     setSelectedProducts([]);
   };
 
+  const filteredProducts = products
+    .filter((product) => {
+      if (!inputFilter) return true;
+      if (
+        product.name.toLowerCase().indexOf(inputFilter.toLocaleLowerCase()) > -1
+      ) {
+        return true;
+      }
+      if (
+        product.type.toLowerCase().indexOf(inputFilter.toLocaleLowerCase()) > -1
+      ) {
+        return true;
+      }
+    })
+    .filter(FILTER_PRODUCTS_MAP[filter]);
+
   return (
     <PagePanel>
       <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-md">
@@ -81,20 +97,15 @@ const ProductsList = ({ products }: ProductsListProps) => {
                 id="filter-products"
                 name="filter-products"
                 label="Filter Products"
-                placeholder="Filter Products"
+                placeholder="Filter Products by name, status or type..."
                 value={inputFilter}
                 onChange={(e) => setInputFilter(e.target.value)}
               />
-              <button
-                type="button"
-                className="mr-2 inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded text-cyan-600 bg-cyan-50 hover:bg-cyan-200 focus:outline-none"
-              >
-                {products.filter(FILTER_PRODUCTS_MAP[filter]).length} Products
-              </button>
+
               {selectedProducts.length ? (
                 <button
                   type="button"
-                  className="mr-2 inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded text-cyan-600 bg-cyan-50 hover:bg-cyan-200 focus:outline-none"
+                  className="mr-2 inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded text-gray-600 bg-gray-50 hover:bg-gray-200 focus:outline-none"
                 >
                   {selectedProducts.length} selected
                   <XIcon
@@ -103,7 +114,11 @@ const ProductsList = ({ products }: ProductsListProps) => {
                     onClick={handleClearSelectedProducts}
                   />
                 </button>
-              ) : null}
+              ) : (
+                <p className="inline-flex items-center text-xs font-medium">
+                  {filteredProducts.length} Products
+                </p>
+              )}
             </div>
           </div>
         </div>
@@ -126,61 +141,49 @@ const ProductsList = ({ products }: ProductsListProps) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {products
-              .filter((product) => {
-                if (!inputFilter) return true;
-                if (
-                  product.name
-                    .toLowerCase()
-                    .indexOf(inputFilter.toLocaleLowerCase()) > -1
-                ) {
-                  return true;
-                }
-              })
-              .filter(FILTER_PRODUCTS_MAP[filter])
-              .map((product) => (
-                <TableRow
-                  key={product.id}
-                  className="cursor-pointer hover:bg-gray-100"
+            {filteredProducts.map((product) => (
+              <TableRow
+                key={product.id}
+                className="cursor-pointer hover:bg-gray-100"
+              >
+                <TableCell className="w-4">
+                  <Checkbox
+                    id="select_one"
+                    name="select_one"
+                    value={product.id}
+                    checked={selectedProducts.includes(product.id)}
+                    onChange={() => handleSelectProduct(product.id)}
+                  />
+                </TableCell>
+                <TableCell
+                  className="text-sm font-medium text-gray-800"
+                  onClick={() => router.push("/products/" + product.id)}
                 >
-                  <TableCell className="w-4">
-                    <Checkbox
-                      id="select_one"
-                      name="select_one"
-                      value={product.id}
-                      checked={selectedProducts.includes(product.id)}
-                      onChange={() => handleSelectProduct(product.id)}
-                    />
-                  </TableCell>
-                  <TableCell
-                    className="text-sm font-medium text-gray-800"
-                    onClick={() => router.push("/products/" + product.id)}
-                  >
-                    {product.name}
-                  </TableCell>
-                  <TableCell className="text-sm text-gray-800">
-                    {product.inventory} in stock
-                  </TableCell>
-                  <TableCell>
-                    {product.status === "active" ? (
-                      <Badge title={product.status} variant="success" />
-                    ) : product.status === "archived" ? (
-                      <Badge title={product.status} variant="danger" />
-                    ) : (
-                      <Badge title={product.status} variant="secondary" />
-                    )}
-                  </TableCell>
-                  <TableCell className="text-sm text-gray-500">
-                    {product.type}
-                  </TableCell>
-                </TableRow>
-              ))}
+                  {product.name}
+                </TableCell>
+                <TableCell className="text-sm text-gray-800">
+                  {product.inventory} in stock
+                </TableCell>
+                <TableCell>
+                  {product.status === "active" ? (
+                    <Badge title={product.status} variant="success" />
+                  ) : product.status === "archived" ? (
+                    <Badge title={product.status} variant="danger" />
+                  ) : (
+                    <Badge title={product.status} variant="secondary" />
+                  )}
+                </TableCell>
+                <TableCell className="text-sm text-gray-500">
+                  {product.type}
+                </TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
         {/* pagination */}
         <PaginationNav
           startCount={1}
-          endCount={products.filter(FILTER_PRODUCTS_MAP[filter]).length}
+          endCount={filteredProducts.length}
           totalCount={products.length}
         />
       </div>
