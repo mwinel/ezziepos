@@ -13,6 +13,7 @@ import TableCell from "@components/ui/TableCell";
 import Checkbox from "@components/ui/Checkbox";
 import SearchInput from "@components/ui/SearchInput";
 import FilterTabs from "@components/ui/FilterTabs";
+import ResultsPill from "@components/ui/ResultsPill";
 
 import en from "@locales/en";
 import fr from "@locales/fr";
@@ -62,6 +63,29 @@ const TeamList = ({ team }: TeamListProps) => {
     }
   };
 
+  const handleClearSelectedTeamMembers = () => {
+    setSelectedTeamMembers([]);
+  };
+
+  const filteredTeamMembers = team
+    .filter((teamMember) => {
+      if (!inputFilter) return true;
+      if (
+        teamMember.firstName
+          .toLowerCase()
+          .indexOf(inputFilter.toLocaleLowerCase()) > -1 ||
+        teamMember.lastName
+          .toLowerCase()
+          .indexOf(inputFilter.toLocaleLowerCase()) > -1 ||
+        teamMember.email
+          .toLowerCase()
+          .indexOf(inputFilter.toLocaleLowerCase()) > -1
+      ) {
+        return true;
+      }
+    })
+    .filter(FILTER_TEAM_MAP[filter]);
+
   return (
     <PagePanel>
       <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-md">
@@ -75,7 +99,6 @@ const TeamList = ({ team }: TeamListProps) => {
         <div className="bg-white">
           <div className="hidden sm:block">
             <div className="flex flex-row py-4 px-6 border-b border-gray-200">
-              {/* Search */}
               <SearchInput
                 id="filter-team"
                 name="filter-team"
@@ -84,6 +107,15 @@ const TeamList = ({ team }: TeamListProps) => {
                 value={inputFilter}
                 onChange={(e) => setInputFilter(e.target.value)}
               />
+              {selectedTeamMembers.length ? (
+                <ResultsPill onClick={handleClearSelectedTeamMembers}>
+                  {selectedTeamMembers.length} selected
+                </ResultsPill>
+              ) : (
+                <p className="inline-flex items-center text-xs font-medium">
+                  {filteredTeamMembers.length} Team Members
+                </p>
+              )}
             </div>
           </div>
         </div>
@@ -106,89 +138,71 @@ const TeamList = ({ team }: TeamListProps) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {team
-              .filter((teamMember) => {
-                if (!inputFilter) return true;
-                if (
-                  teamMember.firstName
-                    .toLowerCase()
-                    .indexOf(inputFilter.toLocaleLowerCase()) > -1 ||
-                  teamMember.lastName
-                    .toLowerCase()
-                    .indexOf(inputFilter.toLocaleLowerCase()) > -1 ||
-                  teamMember.email
-                    .toLowerCase()
-                    .indexOf(inputFilter.toLocaleLowerCase()) > -1
-                ) {
-                  return true;
-                }
-              })
-              .filter(FILTER_TEAM_MAP[filter])
-              .map((teamMember: any) => (
-                <TableRow
-                  key={teamMember.id}
-                  className="cursor-pointer hover:bg-gray-100"
+            {filteredTeamMembers.map((teamMember: any) => (
+              <TableRow
+                key={teamMember.id}
+                className="cursor-pointer hover:bg-gray-100"
+              >
+                <TableCell className="w-4">
+                  <Checkbox
+                    id="select_one"
+                    name="select_one"
+                    value={teamMember.id}
+                    checked={selectedTeamMembers.includes(teamMember.id)}
+                    onChange={() => handleSelectTeamMember(teamMember.id)}
+                  />
+                </TableCell>
+                <TableCell
+                  className="text-sm font-medium text-gray-800"
+                  onClick={() => router.push("/team/" + teamMember.id)}
                 >
-                  <TableCell className="w-4">
-                    <Checkbox
-                      id="select_one"
-                      name="select_one"
-                      value={teamMember.id}
-                      checked={selectedTeamMembers.includes(teamMember.id)}
-                      onChange={() => handleSelectTeamMember(teamMember.id)}
+                  <div className="flex-shrink-0 h-10 w-10">
+                    <Image
+                      loader={myLoader}
+                      src={teamMember.image}
+                      alt={`${teamMember.firstName} ${teamMember.lastName} profile image`}
+                      height={40}
+                      width={40}
+                      className="rounded-full object-cover"
                     />
-                  </TableCell>
-                  <TableCell
-                    className="text-sm font-medium text-gray-800"
-                    onClick={() => router.push("/team/" + teamMember.id)}
-                  >
-                    <div className="flex-shrink-0 h-10 w-10">
-                      <Image
-                        loader={myLoader}
-                        src={teamMember.image}
-                        alt={`${teamMember.firstName} ${teamMember.lastName} profile image`}
-                        height={40}
-                        width={40}
-                        className="rounded-full object-cover"
-                      />
+                  </div>
+                  <div className="ml-4">
+                    <div className="text-sm font-medium text-gray-900">
+                      {teamMember.firstName} {teamMember.lastName}
                     </div>
-                    <div className="ml-4">
-                      <div className="text-sm font-medium text-gray-900">
-                        {teamMember.firstName} {teamMember.lastName}
-                      </div>
-                      <div className="text-sm text-gray-500">
-                        {teamMember.email}
-                      </div>
+                    <div className="text-sm text-gray-500">
+                      {teamMember.email}
                     </div>
-                  </TableCell>
-                  <TableCell className="text-sm text-gray-800">
-                    <div>
-                      <div className="text-sm text-gray-900">
-                        {teamMember.title}
-                      </div>
-                      <div className="text-sm text-gray-500">
-                        {teamMember.department}
-                      </div>
+                  </div>
+                </TableCell>
+                <TableCell className="text-sm text-gray-800">
+                  <div>
+                    <div className="text-sm text-gray-900">
+                      {teamMember.title}
                     </div>
-                  </TableCell>
-                  <TableCell>
-                    {teamMember.isActive ? (
-                      <Badge title="Active" variant="success" />
-                    ) : (
-                      <Badge title="Not Active" variant="danger" />
-                    )}
-                  </TableCell>
-                  <TableCell className="text-sm text-gray-500">
-                    {teamMember.role}
-                  </TableCell>
-                </TableRow>
-              ))}
+                    <div className="text-sm text-gray-500">
+                      {teamMember.department}
+                    </div>
+                  </div>
+                </TableCell>
+                <TableCell>
+                  {teamMember.isActive ? (
+                    <Badge title="Active" variant="success" />
+                  ) : (
+                    <Badge title="Not Active" variant="danger" />
+                  )}
+                </TableCell>
+                <TableCell className="text-sm text-gray-500">
+                  {teamMember.role}
+                </TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
         {/* pagination */}
         <PaginationNav
           startCount={1}
-          endCount={team.filter(FILTER_TEAM_MAP[filter]).length}
+          endCount={filteredTeamMembers.length}
           totalCount={team.length}
         />
       </div>
