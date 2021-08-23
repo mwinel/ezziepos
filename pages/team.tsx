@@ -18,7 +18,7 @@ const Team = () => {
 
   return (
     <>
-      <div className="pb-5 flex items-center justify-between">
+      <div className="flex items-center justify-between">
         <PageHeading title={t.TeamPageTitle} />
         <div className="flex mt-3 sm:mt-0 sm:ml-4">
           <Button variant="secondary">Add Team Member</Button>

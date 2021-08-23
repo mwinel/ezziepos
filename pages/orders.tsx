@@ -18,7 +18,7 @@ const Orders = () => {
 
   return (
     <>
-      <div className="pb-5 flex items-center justify-between">
+      <div className="flex items-center justify-between">
         <PageHeading title={t.OrdersPageTitle} />
         <div className="flex mt-3 sm:mt-0 sm:ml-4">
           <Button variant="secondary">Create Order</Button>

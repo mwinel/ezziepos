@@ -19,7 +19,7 @@ const Products = () => {
 
   return (
     <>
-      <div className="pb-2 flex items-center justify-between">
+      <div className="flex items-center justify-between">
         <PageHeading title={t.ProductsPageTitle} />
         <div className="flex mt-3 sm:mt-0 sm:ml-4 items-center">
           <button
