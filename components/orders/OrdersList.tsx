@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import Link from "next/link";
-import TableTabs from "@components/ui/TableTabs";
 import Badge from "@components/ui/Badge";
 import PaginationNav from "@components/ui/PaginationNav";
 import Table from "@components/ui/Table";
@@ -11,6 +9,8 @@ import TableHeader from "@components/ui/TableHeader";
 import TableBody from "@components/ui/TableBody";
 import TableCell from "@components/ui/TableCell";
 import Checkbox from "@components/ui/Checkbox";
+import SearchInput from "@components/ui/SearchInput";
+import FilterTabs from "@components/ui/FilterTabs";
 
 import en from "@locales/en";
 import fr from "@locales/fr";
@@ -19,41 +19,23 @@ interface OrdersListProps {
   orders: any;
 }
 
-const tabs = [
-  { name: "All", href: "#", count: "3", current: true },
-  { name: "Completed", href: "#", count: "1", current: false },
-  { name: "Open", href: "#", count: "1", current: false },
-  { name: "Cancelled", href: "#", count: "1", current: false },
-];
+const FILTER_ORDERS_MAP = {
+  All: () => true,
+  Completed: (order) => order.status === "Completed",
+  Cancelled: (order) => order.status === "Cancelled",
+  Open: (order) => order.status === "Open",
+};
+
+const FILTER_ORDERS_NAMES = Object.keys(FILTER_ORDERS_MAP);
 
 const OrdersList = ({ orders }: OrdersListProps) => {
   const [selectedOrders, setSelectedOrders] = useState([]);
+  const [filter, setFilter] = useState("All");
+  const [inputFilter, setInputFilter] = useState("");
 
   const router = useRouter();
   const { locale } = router;
   const t = locale === "en" ? en : fr;
-
-  const tabs = [
-    { name: "All", href: "#", count: orders.length, current: true },
-    {
-      name: "Completed",
-      href: "#",
-      count: orders.filter((order) => order.status === "Completed").length,
-      current: false,
-    },
-    {
-      name: "Open",
-      href: "#",
-      count: orders.filter((order) => order.status === "Open").length,
-      current: false,
-    },
-    {
-      name: "Cancelled",
-      href: "#",
-      count: orders.filter((order) => order.status === "Cancelled").length,
-      current: false,
-    },
-  ];
 
   const handleSelectAllOrders = () => {
     if (selectedOrders.length < orders.length) {
@@ -76,12 +58,32 @@ const OrdersList = ({ orders }: OrdersListProps) => {
   };
 
   return (
-    <div className="mt-4 flex flex-col">
+    <div className="mt-6 flex flex-col">
       <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-        <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+        <div className="align-middle inline-block min-w-full sm:px-6 lg:px-8">
           <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-md">
-            {/* tabs */}
-            <TableTabs tabs={tabs} id="products-table" />
+            {/* filter tabs */}
+            <FilterTabs
+              filterNames={FILTER_ORDERS_NAMES}
+              filter={filter}
+              setFilter={setFilter}
+            />
+            {/* search */}
+            <div className="bg-white">
+              <div className="hidden sm:block">
+                <div className="flex flex-row py-4 px-6 border-b border-gray-200">
+                  {/* Search */}
+                  <SearchInput
+                    id="filter-orders"
+                    name="filter-orders"
+                    label="Filter Orders"
+                    placeholder="Filter by order number, customer name or status..."
+                    value={inputFilter}
+                    onChange={(e) => setInputFilter(e.target.value)}
+                  />
+                </div>
+              </div>
+            </div>
             {/* table */}
             <Table>
               <TableHead>
@@ -102,59 +104,77 @@ const OrdersList = ({ orders }: OrdersListProps) => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {orders.map((order: any) => (
-                  <TableRow
-                    key={order.id}
-                    className="cursor-pointer hover:bg-gray-100"
-                  >
-                    <TableCell className="w-4">
-                      <Checkbox
-                        id="select_one"
-                        name="select_one"
-                        value={order.id}
-                        checked={selectedOrders.includes(order.id)}
-                        onChange={() => handleSelectOrder(order.id)}
-                      />
-                    </TableCell>
-                    <TableCell
-                      className="text-sm font-medium text-gray-800"
-                      onClick={() => router.push("/orders/" + order.id)}
+                {orders
+                  .filter((order) => {
+                    if (!inputFilter) return true;
+                    if (
+                      order.orderNumber
+                        .toLowerCase()
+                        .indexOf(inputFilter.toLocaleLowerCase()) > -1 ||
+                      order.status
+                        .toLowerCase()
+                        .indexOf(inputFilter.toLocaleLowerCase()) > -1 ||
+                      order.customerName
+                        .toLowerCase()
+                        .indexOf(inputFilter.toLocaleLowerCase()) > -1
+                    ) {
+                      return true;
+                    }
+                  })
+                  .filter(FILTER_ORDERS_MAP[filter])
+                  .map((order: any) => (
+                    <TableRow
+                      key={order.id}
+                      className="cursor-pointer hover:bg-gray-100"
                     >
-                      # {order.orderNumber}
-                    </TableCell>
-                    <TableCell className="text-sm text-gray-800">
-                      <div>
-                        <div className="text-sm font-medium text-gray-800">
-                          {order.customerName}
+                      <TableCell className="w-4">
+                        <Checkbox
+                          id="select_one"
+                          name="select_one"
+                          value={order.id}
+                          checked={selectedOrders.includes(order.id)}
+                          onChange={() => handleSelectOrder(order.id)}
+                        />
+                      </TableCell>
+                      <TableCell
+                        className="text-sm font-medium text-gray-800"
+                        onClick={() => router.push("/orders/" + order.id)}
+                      >
+                        {order.orderNumber}
+                      </TableCell>
+                      <TableCell className="text-sm text-gray-800">
+                        <div>
+                          <div className="text-sm font-medium text-gray-800">
+                            {order.customerName}
+                          </div>
+                          <div className="text-sm text-gray-500">
+                            {order.customerPhoneNumber}
+                          </div>
                         </div>
-                        <div className="text-sm text-gray-500">
-                          {order.customerPhoneNumber}
-                        </div>
-                      </div>
-                    </TableCell>
-                    <TableCell className="text-sm text-gray-500">
-                      {order.createdAt}
-                    </TableCell>
-                    <TableCell>
-                      {order.status === "Completed" ? (
-                        <Badge title={order.status} variant="success" />
-                      ) : order.status === "Cancelled" ? (
-                        <Badge title={order.status} variant="danger" />
-                      ) : (
-                        <Badge title={order.status} variant="secondary" />
-                      )}
-                    </TableCell>
-                    <TableCell className="text-sm text-gray-500">
-                      ${order.total}
-                    </TableCell>
-                  </TableRow>
-                ))}
+                      </TableCell>
+                      <TableCell className="text-sm text-gray-500">
+                        {order.createdAt}
+                      </TableCell>
+                      <TableCell>
+                        {order.status === "Completed" ? (
+                          <Badge title={order.status} variant="success" />
+                        ) : order.status === "Cancelled" ? (
+                          <Badge title={order.status} variant="danger" />
+                        ) : (
+                          <Badge title={order.status} variant="secondary" />
+                        )}
+                      </TableCell>
+                      <TableCell className="text-sm text-gray-500">
+                        ${order.total}
+                      </TableCell>
+                    </TableRow>
+                  ))}
               </TableBody>
             </Table>
             {/* pagination */}
             <PaginationNav
               startCount={1}
-              endCount={orders.length}
+              endCount={orders.filter(FILTER_ORDERS_MAP[filter]).length}
               totalCount={orders.length}
             />
           </div>
