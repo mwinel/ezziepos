@@ -20,14 +20,14 @@ interface ProductsListProps {
   products: any;
 }
 
-const FILTER_MAP = {
+const FILTER_PRODUCTS_MAP = {
   All: () => true,
   Active: (product) => product.status === "active",
   Draft: (product) => product.status === "draft",
   Archived: (product) => product.status === "archived",
 };
 
-const FILTER_NAMES = Object.keys(FILTER_MAP);
+const FILTER_PRODUCTS_NAMES = Object.keys(FILTER_PRODUCTS_MAP);
 
 const ProductsList = ({ products }: ProductsListProps) => {
   const [selectedProducts, setSelectedProducts] = useState([]);
@@ -69,7 +69,7 @@ const ProductsList = ({ products }: ProductsListProps) => {
           <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-md">
             {/* filter tabs */}
             <FilterTabs
-              filterNames={FILTER_NAMES}
+              filterNames={FILTER_PRODUCTS_NAMES}
               filter={filter}
               setFilter={setFilter}
             />
@@ -90,7 +90,8 @@ const ProductsList = ({ products }: ProductsListProps) => {
                     type="button"
                     className="mr-2 inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded text-cyan-600 bg-cyan-50 hover:bg-cyan-200 focus:outline-none"
                   >
-                    {products.filter(FILTER_MAP[filter]).length} Products
+                    {products.filter(FILTER_PRODUCTS_MAP[filter]).length}{" "}
+                    Products
                   </button>
                   {selectedProducts.length ? (
                     <button
@@ -138,7 +139,7 @@ const ProductsList = ({ products }: ProductsListProps) => {
                       return true;
                     }
                   })
-                  .filter(FILTER_MAP[filter])
+                  .filter(FILTER_PRODUCTS_MAP[filter])
                   .map((product) => (
                     <TableRow
                       key={product.id}
@@ -181,7 +182,7 @@ const ProductsList = ({ products }: ProductsListProps) => {
             {/* pagination */}
             <PaginationNav
               startCount={1}
-              endCount={products.filter(FILTER_MAP[filter]).length}
+              endCount={products.filter(FILTER_PRODUCTS_MAP[filter]).length}
               totalCount={products.length}
             />
           </div>
