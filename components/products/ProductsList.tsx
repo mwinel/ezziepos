@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { XIcon } from "@heroicons/react/solid";
 import PagePanel from "@components/ui/PagePanel";
 import Badge from "@components/ui/Badge";
 import PaginationNav from "@components/ui/PaginationNav";
@@ -13,6 +12,7 @@ import TableCell from "@components/ui/TableCell";
 import Checkbox from "@components/ui/Checkbox";
 import SearchInput from "@components/ui/SearchInput";
 import FilterTabs from "@components/ui/FilterTabs";
+import ResultsPill from "@components/ui/ResultsPill";
 
 import en from "@locales/en";
 import fr from "@locales/fr";
@@ -88,11 +88,10 @@ const ProductsList = ({ products }: ProductsListProps) => {
           filter={filter}
           setFilter={setFilter}
         />
-        {/* results display */}
+        {/* search */}
         <div className="bg-white">
           <div className="hidden sm:block">
             <div className="flex flex-row py-4 px-6 border-b border-gray-200">
-              {/* Search */}
               <SearchInput
                 id="filter-products"
                 name="filter-products"
@@ -101,19 +100,10 @@ const ProductsList = ({ products }: ProductsListProps) => {
                 value={inputFilter}
                 onChange={(e) => setInputFilter(e.target.value)}
               />
-
               {selectedProducts.length ? (
-                <button
-                  type="button"
-                  className="mr-2 inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded text-gray-600 bg-gray-50 hover:bg-gray-200 focus:outline-none"
-                >
+                <ResultsPill onClick={handleClearSelectedProducts}>
                   {selectedProducts.length} selected
-                  <XIcon
-                    className="ml-2 -mr-0.5 h-4 w-4"
-                    aria-hidden="true"
-                    onClick={handleClearSelectedProducts}
-                  />
-                </button>
+                </ResultsPill>
               ) : (
                 <p className="inline-flex items-center text-xs font-medium">
                   {filteredProducts.length} Products
