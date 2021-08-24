@@ -163,7 +163,7 @@ const Header = ({ children }: HeaderProps) => {
                           <DropdownLink active="active" href="/settings">
                             {t.SettingsLink}
                           </DropdownLink>
-                          <DropdownLink active="active" href="/auth/signin">
+                          <DropdownLink active="active" href="/auth/login">
                             {t.LogoutLink}
                           </DropdownLink>
                         </Menu.Items>
@@ -251,7 +251,7 @@ const Header = ({ children }: HeaderProps) => {
                 <NavLink
                   name={t.LogoutLink}
                   icon={<LogoutIcon />}
-                  href="/auth/signin"
+                  href="/auth/login"
                 />
               </div>
             </div>
