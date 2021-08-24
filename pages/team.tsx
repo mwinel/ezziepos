@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { PlusIcon } from "@heroicons/react/solid";
 import DashboardLayout from "@components/layouts/DashboardLayout";
 import Button from "@components/ui/Button";
 import PageHeading from "@components/ui/PageHeading";
@@ -24,7 +25,15 @@ const Team = () => {
       <div className="flex items-center justify-between">
         <PageHeading title={t.TeamPageTitle} />
         <div className="flex mt-3 sm:mt-0 sm:ml-4">
-          <Button variant="secondary">Add Team Member</Button>
+          <Button
+            variant="secondary"
+            textSize="sm"
+            icon={
+              <PlusIcon className="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
+            }
+          >
+            Invite User
+          </Button>
         </div>
       </div>
       <PagePanel>

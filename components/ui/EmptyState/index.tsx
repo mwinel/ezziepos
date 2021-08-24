@@ -1,5 +1,4 @@
 import { PlusIcon } from "@heroicons/react/solid";
-import PagePanel from "@components/ui/PagePanel";
 
 interface EmptyStateProps {
   title: string;

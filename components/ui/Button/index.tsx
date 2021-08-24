@@ -1,5 +1,6 @@
+import { PlusIcon } from "@heroicons/react/solid";
 import { ReactNode, HTMLAttributes } from "react";
-import classNames from "../../../common/classnames";
+import classNames from "@common/classnames";
 
 interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   variant: "primary" | "secondary" | "danger";
@@ -7,6 +8,8 @@ interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   onClick?: any;
   disabled?: boolean;
   className?: any;
+  icon?: ReactNode | any;
+  textSize: "sm" | "md";
 }
 
 const Button = ({
@@ -15,17 +18,20 @@ const Button = ({
   onClick,
   disabled,
   className,
+  icon,
+  textSize,
   ...props
 }: ButtonProps) => {
   const rootClassName = classNames(
-    "block text-center text-sm px-4 py-2 font-medium rounded-md",
+    "inline-flex justify-center items-center text-sm px-4 py-2 font-medium rounded-md shadow-sm",
     variant == "primary"
-      ? "border border-gray-300 shadow-sm text-gray-700 bg-white hover:bg-gray-50"
+      ? "border border-gray-300 text-gray-800 bg-white hover:bg-gray-50"
       : variant == "secondary"
-      ? "shadow-sm text-white bg-cyan-600 hover:bg-cyan-700"
+      ? " text-white bg-cyan-600 hover:bg-cyan-700"
       : variant == "danger"
-      ? "shadow-sm text-white bg-red-600 hover:bg-red-700"
+      ? " text-white bg-red-600 hover:bg-red-700"
       : "",
+    textSize == "md" ? "text-base" : "text-sm",
     disabled ? "cursor-not-allowed" : ""
   );
   return (
@@ -35,6 +41,7 @@ const Button = ({
       onClick={onClick}
       {...props}
     >
+      <div>{icon}</div>
       {children}
     </button>
   );
