@@ -15,9 +15,9 @@ const SignupForm = ({ onSignup }: SignupFormProps) => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
-  const emailInputRef = useRef();
-  const passwordInputRef = useRef();
-  const confirmPasswordInputRef = useRef();
+  const emailInputRef = useRef<HTMLInputElement>();
+  const passwordInputRef = useRef<HTMLInputElement>();
+  const confirmPasswordInputRef = useRef<HTMLInputElement>();
 
   const handleShowPassword = useCallback(
     () => setShowPassword(!showPassword),
@@ -32,7 +32,7 @@ const SignupForm = ({ onSignup }: SignupFormProps) => {
   const submitHandler = (event) => {
     event.preventDefault();
 
-    const enteredEmail = emailInputRef.current.value;
+    const enteredEmail = emailInputRef?.current.value;
     const enteredPassword = passwordInputRef.current.value;
     const enteredConfirmPassword = confirmPasswordInputRef.current.value;
 
