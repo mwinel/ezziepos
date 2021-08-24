@@ -24,8 +24,8 @@ const PaginationNav = ({
         </p>
       </div>
       <div className="flex-1 flex justify-between sm:justify-end">
-        <Button variant="primary">Previous</Button>
-        <Button variant="primary" className="ml-3">Next</Button>
+        <Button variant="primary" textSize="sm">Previous</Button>
+        <Button variant="primary" textSize="sm" className="ml-3">Next</Button>
       </div>
     </nav>
   );
