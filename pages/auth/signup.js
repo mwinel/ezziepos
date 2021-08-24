@@ -177,7 +177,7 @@ const SignUp = () => {
             </div>
 
             <div>
-              <Button variant="secondary" onClick={onSignUp} className="w-full">
+              <Button variant="secondary" textSize="md" onClick={onSignUp} className="w-full">
                 Sign Up
               </Button>
             </div>
