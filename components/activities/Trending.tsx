@@ -33,7 +33,7 @@ const Trending = ({ data }: TrendingProps) => {
             </ul>
           </div>
           <div className="mt-6">
-            <Button className="w-full" variant="primary">
+            <Button className="w-full" textSize="sm" variant="primary">
               View all
             </Button>
           </div>
