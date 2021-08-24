@@ -9,7 +9,7 @@ const ResultsPill = ({ children, onClick }: ResultsPillProps) => {
   return (
     <button
       type="button"
-      className="mr-2 inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded text-gray-600 bg-gray-50 hover:bg-gray-200 focus:outline-none"
+      className="mr-2 inline-flex items-center px-2.5 py-1.5 border border-transparent text-sm font-medium rounded text-gray-600 bg-gray-50 hover:bg-gray-200 focus:outline-none"
     >
       {children}
       <XIcon

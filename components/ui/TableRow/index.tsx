@@ -4,7 +4,7 @@ interface TableRowProps {
 }
 
 const TableRow = ({ children, className }: TableRowProps) => {
-  return <tr className={className}>{children}</tr>;
+  return <tr className={`${className} "flex items-center"`}>{children}</tr>;
 };
 
 export default TableRow;

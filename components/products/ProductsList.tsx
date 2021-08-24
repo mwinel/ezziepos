@@ -104,7 +104,7 @@ const ProductsList = ({ products }: ProductsListProps) => {
                   {selectedProducts.length} selected
                 </ResultsPill>
               ) : (
-                <p className="inline-flex items-center text-xs font-medium">
+                <p className="inline-flex items-center text-sm text-gray-800 font-medium">
                   {filteredProducts.length} Products
                 </p>
               )}

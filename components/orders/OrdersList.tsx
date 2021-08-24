@@ -106,7 +106,7 @@ const OrdersList = ({ orders }: OrdersListProps) => {
                   {selectedOrders.length} selected
                 </ResultsPill>
               ) : (
-                <p className="inline-flex items-center text-xs font-medium">
+                <p className="inline-flex items-center text-sm text-gray-800 font-medium">
                   {filteredOrders.length} Orders
                 </p>
               )}

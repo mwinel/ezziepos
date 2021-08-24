@@ -1,4 +1,3 @@
-import { PlusIcon } from "@heroicons/react/solid";
 import { ReactNode, HTMLAttributes } from "react";
 import classNames from "@common/classnames";
 
@@ -27,16 +26,15 @@ const Button = ({
     variant == "primary"
       ? "border border-gray-300 text-gray-800 bg-white hover:bg-gray-50"
       : variant == "secondary"
-      ? " text-white bg-cyan-600 hover:bg-cyan-700"
+      ? "text-white bg-cyan-600 hover:bg-cyan-700"
       : variant == "danger"
-      ? " text-white bg-red-600 hover:bg-red-700"
+      ? "text-white bg-red-600 hover:bg-red-700"
       : "",
     textSize == "md" ? "text-base" : "text-sm",
     disabled ? "cursor-not-allowed" : ""
   );
   return (
     <button
-      type="button"
       className={`${className} ${rootClassName}`}
       onClick={onClick}
       {...props}

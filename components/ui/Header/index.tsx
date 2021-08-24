@@ -1,4 +1,4 @@
-import { FC, Fragment } from "react";
+import { Fragment, ReactNode } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { Menu, Popover, Transition } from "@headlessui/react";
@@ -18,11 +18,13 @@ import {
   TagIcon,
   LogoutIcon,
 } from "@heroicons/react/outline";
-import { NavLink, Logo, DropdownLink } from "../../../components";
-import classNames from "../../../common/classnames";
+import NavLink from "@components/ui/NavLink";
+import Logo from "@components/ui/Logo";
+import DropdownLink from "@components/ui/DropdownLink";
+import classNames from "@common/classnames";
 
-import en from "../../../locales/en";
-import fr from "../../../locales/fr";
+import en from "@locales/en";
+import fr from "@locales/fr";
 
 const user = {
   name: "Chelsea Hagon",
@@ -31,14 +33,14 @@ const user = {
 };
 
 interface HeaderProps {
-  children?: any;
+  children?: ReactNode | any;
 }
 
 const myLoader = ({ src, width, quality }) => {
   return `https://images.unsplash.com/${src}?w=${width}&q=${quality || 75}`;
 };
 
-const Header: FC<HeaderProps> = ({ children }) => {
+const Header = ({ children }: HeaderProps) => {
   const router = useRouter();
   const { locale } = router;
   const t = locale === "en" ? en : fr;
@@ -85,7 +87,7 @@ const Header: FC<HeaderProps> = ({ children }) => {
                         id="search"
                         name="search"
                         className="block w-full bg-white border border-gray-300 rounded-md py-2 pl-10 pr-3 text-sm placeholder-gray-500 focus:outline-none focus:text-gray-900 focus:placeholder-gray-400 focus:ring-1 focus:ring-rose-500 focus:border-rose-500 sm:text-sm"
-                        placeholder="Search"
+                        placeholder="Search..."
                         type="search"
                       />
                     </div>

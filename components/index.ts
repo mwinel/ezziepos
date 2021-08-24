@@ -12,4 +12,3 @@ export { default as ActivityDot } from "./ui/ActivityDot";
 export { default as PageHeading } from "./ui/PageHeading";
 export { default as Badge } from "./ui/Badge";
 export { default as PaginationNav } from "./ui/PaginationNav";
-export { default as TableTabs } from "./ui/TableTabs";

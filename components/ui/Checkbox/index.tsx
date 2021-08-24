@@ -15,7 +15,7 @@ const Checkbox = ({ id, name, value, checked, onChange }: CheckboxProps) => {
       type="checkbox"
       checked={checked}
       onChange={onChange}
-      className="h-4 w-4 text-cyan-600 focus:outline-none border-gray-300 rounded-sm"
+      className="h-4 w-4 text-cyan-600 focus:outline-none border-gray-300 rounded"
     />
   );
 };

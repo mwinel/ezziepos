@@ -1,7 +1,6 @@
-import { FC } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import classNames from "../../../common/classnames";
+import classNames from "@common/classnames";
 
 interface NavLinkProps {
   name?: string;
@@ -9,7 +8,7 @@ interface NavLinkProps {
   icon?: any;
 }
 
-const NavLink: FC<NavLinkProps> = ({ name, href, icon }) => {
+const NavLink = ({ name, href, icon }: NavLinkProps) => {
   const router = useRouter();
   const { locale } = router;
 

@@ -7,7 +7,7 @@ interface TableHeaderProps {
 
 const TableHeader = ({ children, className }: TableHeaderProps) => {
   const rootClassName = classNames(
-    "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+    "px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider"
   );
 
   return (
