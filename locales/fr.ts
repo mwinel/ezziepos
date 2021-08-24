@@ -19,6 +19,9 @@ const fr = {
   // Search input
   SearchinputPlaceholder: "Cherche ici...",
 
+  // Home Page
+  HomePageTitle: "Home",
+
   // Products Page
   ProductsPageTitle: "Des produits",
   ProductsTableProduct: "Product",

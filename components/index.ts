@@ -13,6 +13,3 @@ export { default as PageHeading } from "./ui/PageHeading";
 export { default as Badge } from "./ui/Badge";
 export { default as PaginationNav } from "./ui/PaginationNav";
 export { default as TableTabs } from "./ui/TableTabs";
-
-// activities
-export { default as RecentActivities } from "./activities/RecentActivities";

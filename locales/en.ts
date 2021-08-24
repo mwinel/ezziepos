@@ -19,6 +19,9 @@ const en = {
   // Search input
   SearchinputPlaceholder: "Search here...",
 
+  // Home Page
+  HomePageTitle: "Home",
+
   // Products Page
   ProductsPageTitle: "Products",
   ProductsTableProduct: "Product",
