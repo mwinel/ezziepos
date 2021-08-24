@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
+import DashboardLayout from "@components/layouts/DashboardLayout";
 import PageHeading from "@components/ui/PageHeading";
 import PagePanel from "@components/ui/PagePanel";
 import EmptyState from "@components/ui/EmptyState";
@@ -15,7 +16,7 @@ const History = () => {
   const t = locale === "en" ? en : fr;
 
   return (
-    <>
+    <DashboardLayout>
       <div className="flex items-center justify-between">
         <PageHeading title={t.HistoryPageTitle} />
       </div>
@@ -30,7 +31,7 @@ const History = () => {
           />
         )}
       </PagePanel>
-    </>
+    </DashboardLayout>
   );
 };
 

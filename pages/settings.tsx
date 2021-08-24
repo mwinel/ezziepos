@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import DashboardLayout from "@components/layouts/DashboardLayout";
 import PageHeading from "@components/ui/PageHeading";
 import PagePanel from "@components/ui/PagePanel";
 
@@ -11,12 +12,12 @@ const Settings = () => {
   const t = locale === "en" ? en : fr;
 
   return (
-    <>
+    <DashboardLayout>
       <div className="flex items-center justify-between">
         <PageHeading title={t.SettingsPageTitle} />
       </div>
       <PagePanel>Settings Content</PagePanel>
-    </>
+    </DashboardLayout>
   );
 };
 

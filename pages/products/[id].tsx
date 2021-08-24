@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import DashboardLayout from "@components/layouts/DashboardLayout";
 import PageHeading from "@components/ui/PageHeading";
 import ProductDetail from "@components/products/ProductDetail";
 
@@ -11,12 +12,12 @@ const Product = () => {
   const t = locale === "en" ? en : fr;
 
   return (
-    <>
-      <div className="pb-5 flex items-center justify-between">
+    <DashboardLayout>
+      <div className="flex items-center justify-between">
         <PageHeading title="Product Name will go here" />
         <ProductDetail />
       </div>
-    </>
+    </DashboardLayout>
   );
 };
 

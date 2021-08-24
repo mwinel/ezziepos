@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
+import DashboardLayout from "@components/layouts/DashboardLayout";
 import Button from "@components/ui/Button";
 import PageHeading from "@components/ui/PageHeading";
 import PagePanel from "@components/ui/PagePanel";
@@ -19,7 +20,7 @@ const Team = () => {
   const t = locale === "en" ? en : fr;
 
   return (
-    <>
+    <DashboardLayout>
       <div className="flex items-center justify-between">
         <PageHeading title={t.TeamPageTitle} />
         <div className="flex mt-3 sm:mt-0 sm:ml-4">
@@ -37,7 +38,7 @@ const Team = () => {
           />
         )}
       </PagePanel>
-    </>
+    </DashboardLayout>
   );
 };
 
