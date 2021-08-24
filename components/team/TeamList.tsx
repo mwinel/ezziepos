@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import PagePanel from "@components/ui/PagePanel";
 import Badge from "@components/ui/Badge";
 import PaginationNav from "@components/ui/PaginationNav";
 import Table from "@components/ui/Table";
@@ -87,7 +86,7 @@ const TeamList = ({ team }: TeamListProps) => {
     .filter(FILTER_TEAM_MAP[filter]);
 
   return (
-    <PagePanel>
+    <>
       <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-md">
         {/* filter tabs */}
         <FilterTabs
@@ -206,7 +205,7 @@ const TeamList = ({ team }: TeamListProps) => {
           totalCount={team.length}
         />
       </div>
-    </PagePanel>
+    </>
   );
 };
 

@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import Button from "@components/ui/Button";
 import PageHeading from "@components/ui/PageHeading";
+import PagePanel from "@components/ui/PagePanel";
+import EmptyState from "@components/ui/EmptyState";
 import OrdersList from "@components/orders/OrdersList";
 
 import testOrders from "../data/orders";
@@ -24,7 +26,17 @@ const Orders = () => {
           <Button variant="secondary">Create Order</Button>
         </div>
       </div>
-      <OrdersList orders={orders} />
+      <PagePanel>
+        {orders.length ? (
+          <OrdersList orders={orders} />
+        ) : (
+          <EmptyState
+            title="No Orders"
+            description="Get started by creating a new order."
+            buttonText="New Order"
+          />
+        )}
+      </PagePanel>
     </>
   );
 };

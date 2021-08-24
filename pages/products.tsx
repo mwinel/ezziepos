@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import Button from "@components/ui/Button";
 import PageHeading from "@components/ui/PageHeading";
+import PagePanel from "@components/ui/PagePanel";
 import EmptyState from "@components/ui/EmptyState";
 import ProductsList from "@components/products/ProductsList";
 
@@ -39,15 +40,17 @@ const Products = () => {
           </Button>
         </div>
       </div>
-      {products.length ? (
-        <ProductsList products={products} />
-      ) : (
-        <EmptyState
-          title="No Products"
-          description="Get started by creating a new product."
-          buttonText="New Product"
-        />
-      )}
+      <PagePanel>
+        {products.length ? (
+          <ProductsList products={products} />
+        ) : (
+          <EmptyState
+            title="No Products"
+            description="Get started by creating a new product."
+            buttonText="New Product"
+          />
+        )}
+      </PagePanel>
     </>
   );
 };
